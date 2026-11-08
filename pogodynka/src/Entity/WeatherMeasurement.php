@@ -49,7 +49,7 @@ class WeatherMeasurement
         return $this->measuredAt;
     }
 
-    public function setMeasuredAt(\DateTimeImmutable $measuredAt): static
+    public function setMeasuredAt(?\DateTimeImmutable $measuredAt): static
     {
         $this->measuredAt = $measuredAt;
 
@@ -61,7 +61,7 @@ class WeatherMeasurement
         return $this->temperature;
     }
 
-    public function setTemperature(string $temperature): static
+    public function setTemperature(?string $temperature): static
     {
         $this->temperature = $temperature;
 
@@ -73,7 +73,7 @@ class WeatherMeasurement
         return $this->pressure;
     }
 
-    public function setPressure(string $pressure): static
+    public function setPressure(?string $pressure): static
     {
         $this->pressure = $pressure;
 
@@ -85,7 +85,7 @@ class WeatherMeasurement
         return $this->humidity;
     }
 
-    public function setHumidity(int $humidity): static
+    public function setHumidity(?int $humidity): static
     {
         $this->humidity = $humidity;
 
@@ -97,7 +97,7 @@ class WeatherMeasurement
         return $this->windSpeed;
     }
 
-    public function setWindSpeed(string $windSpeed): static
+    public function setWindSpeed(?string $windSpeed): static
     {
         $this->windSpeed = $windSpeed;
 
@@ -109,7 +109,7 @@ class WeatherMeasurement
         return $this->windDirection;
     }
 
-    public function setWindDirection(int $windDirection): static
+    public function setWindDirection(?int $windDirection): static
     {
         $this->windDirection = $windDirection;
 
@@ -121,7 +121,7 @@ class WeatherMeasurement
         return $this->cloudCover;
     }
 
-    public function setCloudCover(int $cloudCover): static
+    public function setCloudCover(?int $cloudCover): static
     {
         $this->cloudCover = $cloudCover;
 

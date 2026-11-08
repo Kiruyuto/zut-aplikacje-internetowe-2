@@ -1,0 +1,23 @@
+App\Entity\WeatherMeasurement:
+    properties:
+        measuredAt:
+            - NotNull: { groups: [create, edit] }
+        temperature:
+            - NotBlank: { groups: [create, edit] }
+        pressure:
+            - NotBlank: { groups: [create, edit] }
+            - Positive: { groups: [create, edit] }
+        humidity:
+            - NotBlank: { groups: [create, edit] }
+            - Range: { min: 0, max: 100, groups: [create, edit] }
+        windSpeed:
+            - NotBlank: { groups: [create, edit] }
+            - PositiveOrZero: { groups: [create, edit] }
+        windDirection:
+            - NotBlank: { groups: [create, edit] }
+            - Range: { min: 0, max: 360, groups: [create, edit] }
+        cloudCover:
+            - NotBlank: { groups: [create, edit] }
+            - Range: { min: 0, max: 100, groups: [create, edit] }
+        location:
+            - NotNull: { groups: [create, edit] }

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherMeasurement index{% endblock %}
+
+{% block body %}
+    <h1>WeatherMeasurement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>MeasuredAt</th>
+                <th>Temperature</th>
+                <th>Pressure</th>
+                <th>Humidity</th>
+                <th>WindSpeed</th>
+                <th>WindDirection</th>
+                <th>CloudCover</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for weather_measurement in weather_measurements %}
+            <tr>
+                <td>{{ weather_measurement.id }}</td>
+                <td>{{ weather_measurement.measuredAt ? weather_measurement.measuredAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ weather_measurement.temperature }}</td>
+                <td>{{ weather_measurement.pressure }}</td>
+                <td>{{ weather_measurement.humidity }}</td>
+                <td>{{ weather_measurement.windSpeed }}</td>
+                <td>{{ weather_measurement.windDirection }}</td>
+                <td>{{ weather_measurement.cloudCover }}</td>
+                <td>
+                    <a href="{{ path('app_weather_measurement_show', {'id': weather_measurement.id}) }}">show</a>
+                    <a href="{{ path('app_weather_measurement_edit', {'id': weather_measurement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_measurement_new') }}">Create new</a>
+{% endblock %}
