@@ -10,11 +10,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/weather/measurement', priority: 1)]
 final class WeatherMeasurementController extends AbstractController
 {
     #[Route(name: 'app_weather_measurement_index', methods: ['GET'])]
+    #[IsGranted('ROLE_WEATHER_MEASUREMENT_INDEX')]
     public function index(WeatherMeasurementRepository $weatherMeasurementRepository): Response
     {
         return $this->render('weather_measurement/index.html.twig', [
@@ -23,6 +25,7 @@ final class WeatherMeasurementController extends AbstractController
     }
 
     #[Route('/new', name: 'app_weather_measurement_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_WEATHER_MEASUREMENT_NEW')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $weatherMeasurement = new WeatherMeasurement();
@@ -45,6 +48,7 @@ final class WeatherMeasurementController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_weather_measurement_show', methods: ['GET'])]
+    #[IsGranted('ROLE_WEATHER_MEASUREMENT_SHOW')]
     public function show(WeatherMeasurement $weatherMeasurement): Response
     {
         return $this->render('weather_measurement/show.html.twig', [
@@ -53,6 +57,7 @@ final class WeatherMeasurementController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_weather_measurement_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_WEATHER_MEASUREMENT_EDIT')]
     public function edit(Request $request, WeatherMeasurement $weatherMeasurement, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(WeatherMeasurementType::class, $weatherMeasurement, [
@@ -73,6 +78,7 @@ final class WeatherMeasurementController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_weather_measurement_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_WEATHER_MEASUREMENT_DELETE')]
     public function delete(Request $request, WeatherMeasurement $weatherMeasurement, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$weatherMeasurement->getId(), $request->getPayload()->getString('_token'))) {
